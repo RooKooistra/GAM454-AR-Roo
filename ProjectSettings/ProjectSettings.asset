@@ -8,15 +8,15 @@ PlayerSettings:
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: SunshineStudios
   productName: GAM454-ROO
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -65,7 +65,7 @@ PlayerSettings:
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
-  androidRenderOutsideSafeArea: 1
+  androidRenderOutsideSafeArea: 0
   androidUseSwappy: 0
   androidBlitType: 0
   androidResizableWindow: 0
@@ -136,10 +136,10 @@ PlayerSettings:
     Others: 1
   bundleVersion: 1.0
   preloadedAssets:
-  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   - {fileID: 11400000, guid: 1eb95d77acb39444e8cf44313496a874, type: 2}
   - {fileID: 11400000, guid: 46daa3198e4a7fb46bd2bf6b5b97fd0b, type: 2}
   - {fileID: -7013296538062472285, guid: 58f40b12bbc864f3c96c6505a9a1e1e3, type: 2}
+  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -156,7 +156,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.SunshineStudios.GAM454ROO
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -370,6 +371,9 @@ PlayerSettings:
   - m_BuildTarget: iOSSupport
     m_APIs: 10000000
     m_Automatic: 1
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 0b000000
+    m_Automatic: 0
   m_BuildTargetVRSettings: []
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
