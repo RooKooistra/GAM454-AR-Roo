@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -7,18 +8,31 @@ public class ARPlacement : MonoBehaviour
 {
     public GameObject placementIndicator;
     public ARRaycastManager aRRaycastManager;
+    public ARPlaneManager aRPlaneManager;
     public Camera arCamera;
     
     private Pose _placementPose;
-    [SerializeField] private bool usePlacementIndicator = true;
+    [SerializeField] private bool usePlacementIndicator = false;
     private bool _placementPoseIsValid = false;
 
+    private void Start()
+    {
+        PanelController.ShopPanel += HandleShopPanel;
+    }
+
+    private void OnDestroy()
+    {
+        PanelController.ShopPanel -= HandleShopPanel;
+    }
 
     // Update is called once per frame
     void Update()
     {
         UpdatePlacementPose();
-        if(usePlacementIndicator) UpdatePlacementIndicator();
+        UpdatePlacementIndicator();
+        
+        foreach (var plane in aRPlaneManager.trackables)
+            plane.gameObject.SetActive(false);
     }
 
     private void UpdatePlacementIndicator()
@@ -31,11 +45,16 @@ public class ARPlacement : MonoBehaviour
 
     private void UpdatePlacementPose()
     {
-        var screenPosition = arCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.75f));
+        var screenPosition = arCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.6f));
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
         aRRaycastManager.Raycast(screenPosition, hits, TrackableType.Planes); // only want to detect planes
 
         _placementPoseIsValid = hits.Count > 0;
         if (_placementPoseIsValid) _placementPose = hits[0].pose;
+    }
+
+    void HandleShopPanel(bool panelStatus)
+    {
+        usePlacementIndicator = panelStatus;
     }
 }
