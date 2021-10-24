@@ -14,8 +14,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TouchController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://Z:/Unity/GAM457/Assets/Scripts/Enemy/LogicModel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ItemPanelController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WorldObjectsManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zkt3XC9R7CZpfJLvoD9oKn9NCW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -63,7 +65,8 @@
       <workItem from="1634703727748" duration="2649000" />
       <workItem from="1634727334692" duration="7876000" />
       <workItem from="1634793561532" duration="3535000" />
-      <workItem from="1634985259827" duration="4652000" />
+      <workItem from="1634985259827" duration="5249000" />
+      <workItem from="1635057717267" duration="14574000" />
     </task>
     <servers />
   </component>

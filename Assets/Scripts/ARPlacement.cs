@@ -15,9 +15,16 @@ public class ARPlacement : MonoBehaviour
     [SerializeField] private bool usePlacementIndicator = false;
     private bool _placementPoseIsValid = false;
 
+    [SerializeField] private GameObject tempGhostObject = null;
+    [SerializeField] private GameObject tempObject = null;
+    
+    private GameObject _ghostObject; // holder for transparent game object for placement visualisation
+    public GameObject[] placementConformationButtons;
+
     private void Start()
     {
         PanelController.ShopPanel += HandleShopPanel;
+        UpdateConfirmButtons();
     }
 
     private void OnDestroy()
@@ -30,7 +37,8 @@ public class ARPlacement : MonoBehaviour
     {
         UpdatePlacementPose();
         UpdatePlacementIndicator();
-        
+        if (_ghostObject != null) UpdateGhostObject();
+
         foreach (var plane in aRPlaneManager.trackables)
             plane.gameObject.SetActive(false);
     }
@@ -52,9 +60,46 @@ public class ARPlacement : MonoBehaviour
         _placementPoseIsValid = hits.Count > 0;
         if (_placementPoseIsValid) _placementPose = hits[0].pose;
     }
+    
+    void UpdateGhostObject()
+    {
+        _ghostObject.transform.SetPositionAndRotation(_placementPose.position, _placementPose.rotation);
+    }
 
     void HandleShopPanel(bool panelStatus)
     {
         usePlacementIndicator = panelStatus;
+    }
+
+    public void SpawnGhostObject(string nameOfObject)
+    {
+        DestroyGhostObject();
+
+        _ghostObject = (GameObject) Instantiate(tempGhostObject, _placementPose.position, _placementPose.rotation);
+        UpdateConfirmButtons();
+    }
+
+    public void SpawnRealObject()
+    {
+        if (_ghostObject == null) return;
+        Instantiate(tempObject, _placementPose.position, _placementPose.rotation);
+        DestroyGhostObject();
+    }
+
+    void UpdateConfirmButtons()
+    {
+        foreach (var GO in placementConformationButtons)
+        {
+            GO.SetActive(_ghostObject != null);
+        }
+    }
+
+    public void DestroyGhostObject()
+    {
+        if (_ghostObject == null) return;
+        Destroy(_ghostObject);
+        _ghostObject = null;
+        
+        UpdateConfirmButtons();
     }
 }
